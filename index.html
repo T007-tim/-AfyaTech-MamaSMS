@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AfyaTech MamaSMS — Maternal Health SMS Assistant</title>
+    <meta
+      name="description"
+      content="Interactive platform for localized maternal health SMS guidance for rural Kenya and Uganda."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true">A</div>
+          <div class="brand__text">
+            <div class="brand__name">AfyaTech MamaSMS</div>
+            <div class="brand__tag">Localized maternal health SMS assistant</div>
+          </div>
+        </div>
+
+        <div class="topbar__actions">
+          <button id="btnReset" class="btn btn--ghost" type="button">
+            Reset
+          </button>
+          <button id="btnSave" class="btn btn--primary" type="button">
+            Save
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container app" tabindex="-1">
+      <section class="panel panel--welcome" aria-label="Welcome">
+        <div class="welcome">
+          <div>
+            <h1 class="h1">Build better, rural-aware SMS responses</h1>
+            <p class="muted">
+              Use this tool to generate short, culturally respectful, low-cost,
+              CHW-friendly messages for expectant mothers in Kenya and Uganda.
+            </p>
+          </div>
+          <div class="welcome__chips" aria-label="Design goals">
+            <span class="chip">Staple foods</span>
+            <span class="chip">CHV/CHW/VHT pathway</span>
+            <span class="chip">M-Pesa aware</span>
+            <span class="chip">Danger-sign triage</span>
+            <span class="chip">SMS-length</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="panel" aria-label="Context">
+          <div class="panel__header">
+            <h2 class="h2">Client context</h2>
+            <p class="muted small">
+              Keep it realistic for rural settings. Unknown is okay.
+            </p>
+          </div>
+
+          <form id="contextForm" class="form" autocomplete="off">
+            <div class="field">
+              <label for="country" class="label">Country</label>
+              <select id="country" class="input">
+                <option value="unknown" selected>Unknown</option>
+                <option value="kenya">Kenya</option>
+                <option value="uganda">Uganda</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="language" class="label">Language style</label>
+              <select id="language" class="input">
+                <option value="en" selected>English (simple)</option>
+                <option value="en-sw">English + Swahili hints</option>
+                <option value="en-lg">English + Luganda hints</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="stage" class="label">Pregnancy stage</label>
+              <select id="stage" class="input">
+                <option value="unknown" selected>Unknown</option>
+                <option value="t1">1st trimester (0–13 weeks)</option>
+                <option value="t2">2nd trimester (14–27 weeks)</option>
+                <option value="t3">3rd trimester (28+ weeks)</option>
+                <option value="postpartum">Postpartum</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="access" class="label">Access to care</label>
+              <select id="access" class="input">
+                <option value="unknown" selected>Unknown</option>
+                <option value="chv_near">CHW/CHV/VHT available nearby</option>
+                <option value="clinic_far">Clinic is far / transport is hard</option>
+                <option value="clinic_near">Clinic is reachable</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="money" class="label">Money situation</label>
+              <select id="money" class="input">
+                <option value="unknown" selected>Unknown</option>
+                <option value="tight">Tight (little/no cash)</option>
+                <option value="some">Some money available</option>
+                <option value="mpesa">Can use M-Pesa (Kenya)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="staples" class="label">Staples available</label>
+              <div class="multi" id="staples" role="group" aria-label="Staples">
+                <label class="check">
+                  <input type="checkbox" value="ugali_posho" />
+                  <span>Ugali/Posho</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="matooke" />
+                  <span>Matooke</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="beans" />
+                  <span>Beans/Ndengu</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="greens" />
+                  <span>Sukuma/Greens</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="small_fish" />
+                  <span>Omena/Mukene</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="groundnuts" />
+                  <span>Groundnuts</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="milk" />
+                  <span>Milk</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="eggs" />
+                  <span>Eggs (if acceptable)</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="porridge" />
+                  <span>Porridge</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="bananas" />
+                  <span>Bananas</span>
+                </label>
+              </div>
+              <div class="hint small muted">
+                Tip: pick what’s truly common/affordable. Unknown is fine.
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cultural" class="label">Cultural notes (optional)</label>
+              <input
+                id="cultural"
+                class="input"
+                type="text"
+                placeholder="e.g., avoids eggs/fish, elders advise herbs, privacy concerns..."
+              />
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" aria-label="Message composer">
+          <div class="panel__header">
+            <h2 class="h2">Message composer</h2>
+            <p class="muted small">
+              Enter the client’s SMS. The assistant will produce a localized,
+              SMS-length reply with safe escalation when needed.
+            </p>
+          </div>
+
+          <div class="composer">
+            <div class="field">
+              <label for="userMsg" class="label">Incoming SMS</label>
+              <textarea
+                id="userMsg"
+                class="input textarea"
+                rows="5"
+                placeholder="Example: I am 7 months and my face is swollen and I have a bad headache."
+              ></textarea>
+              <div class="row row--space">
+                <div class="small muted" id="userCount">0 chars</div>
+                <div class="row">
+                  <select id="scenario" class="input input--compact" aria-label="Scenario">
+                    <option value="ex_swollen" selected>Scenario: swelling + headache</option>
+                    <option value="ex_nausea">Scenario: nausea (early pregnancy)</option>
+                    <option value="ex_no_money">Scenario: no transport money</option>
+                    <option value="ex_food_taboo">Scenario: food taboo (eggs/fish)</option>
+                    <option value="ex_movement">Scenario: reduced baby movement</option>
+                  </select>
+                  <button id="btnExample" class="btn btn--ghost" type="button">
+                    Load
+                  </button>
+                  <button id="btnGenerate" class="btn btn--primary" type="button">
+                    Generate reply
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider" role="separator" aria-hidden="true"></div>
+
+            <div class="field">
+              <div class="row row--space">
+                <label class="label">Danger signs checklist (optional)</label>
+                <button id="btnClearFlags" class="btn btn--ghost" type="button">
+                  Clear
+                </button>
+              </div>
+              <div class="multi" id="flags" role="group" aria-label="Danger signs">
+                <label class="check">
+                  <input type="checkbox" value="bleeding" />
+                  <span>Heavy bleeding</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="headache" />
+                  <span>Severe headache</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="vision" />
+                  <span>Blurred vision</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="swelling" />
+                  <span>Swollen face/hands</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="fits" />
+                  <span>Fits / fainting</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="fever" />
+                  <span>Fever</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="pain" />
+                  <span>Severe abdominal pain</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="waters" />
+                  <span>Waters broke early</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="movement" />
+                  <span>Baby movement reduced</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" value="breathing" />
+                  <span>Trouble breathing</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel" aria-label="Output">
+        <div class="panel__header">
+          <h2 class="h2">Reply preview</h2>
+          <p class="muted small">
+            SMS segments are shown below. You can copy them exactly as sent.
+          </p>
+        </div>
+
+        <div class="output">
+          <div class="output__meta">
+            <div class="pill" id="pillTone">Tone: respectful</div>
+            <div class="pill" id="pillSafety">Safety: pending</div>
+            <div class="pill" id="pillSegments">Segments: 0</div>
+          </div>
+
+          <div id="segments" class="segments" aria-live="polite">
+            <div class="empty">
+              Generate a reply to see SMS segments here.
+            </div>
+          </div>
+
+          <div class="row row--space">
+            <div class="small muted" id="replyCount">0 chars</div>
+            <div class="row">
+              <button id="btnCopyAll" class="btn btn--ghost" type="button" disabled>
+                Copy all
+              </button>
+              <button id="btnExport" class="btn btn--ghost" type="button" disabled>
+                Export .txt
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="small muted">
+          Built with HTML/CSS/JS. Safety note: this tool supports triage but does not replace clinical care.
+        </div>
+      </footer>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+

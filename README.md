@@ -1,4 +1,4 @@
-# AfyaTech MamaSMS (Vanilla Frontend)
+# AfyaTech MamaSMS 
 
 Interactive **HTML/CSS/JavaScript** platform that generates **SMS-friendly, rural-aware** maternal health replies (Kenya/Uganda), including:
 
@@ -31,3 +31,8 @@ Then open `http://localhost:5173` in your browser.
 - `styles.css`: modern responsive styling
 - `app.js`: all interactivity + message generation logic
 
+## Technologies used
+
+1.Javascript
+2HTML
+3.CSS
